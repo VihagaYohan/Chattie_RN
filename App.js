@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+import type { Node } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,14 +17,23 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { Provider } from 'react-redux'
 
+// redux store
+import { store } from './app/store/store'
+
+// screens
+import HomeScreen from './app/screens/HomeScreen'
 
 const App = () => {
-  
+
   return (
-    <SafeAreaView>
-      
-    </SafeAreaView>
+    <Provider store={store}>
+      <NavigationContainer>
+        <HomeScreen />
+      </NavigationContainer>
+    </Provider>
   );
 };
 
