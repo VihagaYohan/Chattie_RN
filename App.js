@@ -24,14 +24,14 @@ import { Provider } from 'react-redux'
 import { store } from './app/store/store'
 
 // screens
-import {HomeScreen,TutorialScreen} from './app/screens'
+import HomeScreen from './app/screens/HomeScreen'
 
 const App = () => {
 
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <TutorialScreen />
+        <HomeScreen />
       </NavigationContainer>
     </Provider>
   );
