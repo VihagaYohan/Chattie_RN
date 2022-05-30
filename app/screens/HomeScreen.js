@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeTheme } from '../store/Reducers/theme'
