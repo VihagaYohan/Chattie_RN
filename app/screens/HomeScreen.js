@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, Button } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeTheme } from '../store/Reducers/theme'
+import Icon from 'react-native-vector-icons/FontAwesome5'
 
 import {utils,mode} from '../utils'
 
@@ -35,6 +36,10 @@ const Screen = () => {
             <Button title='Change theme' onPress={handleTheme} />
 
             <Button title="Get Theme" onPress={getTheme}/>
+
+            <Icon name="chevron-left" 
+            size={20}
+            color="red"/>
         </View>
     )
 }
