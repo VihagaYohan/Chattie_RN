@@ -6,5 +6,7 @@ export default  {
     large:responsiveFontSize(2.4),
     medium:responsiveFontSize(2.3),
     regular:responsiveFontSize(2),
-    small:responsiveFontSize(1.75)
+    small:responsiveFontSize(1.75),
+    boldFont:'Poppins-Bold',
+    regularFont:'Poppins-Regular'
 }
