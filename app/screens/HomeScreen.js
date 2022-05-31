@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeTheme } from '../store/Reducers/theme'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 
+// utility
 import {utils,mode} from '../utils'
+
+// components
+import {AppWrapper} from '../components'
 
 const {getData} = utils
 const {lightTheme,darkTheme} = mode
@@ -30,7 +34,7 @@ const Screen = () => {
     }
 
     return (
-        <View style={styles(theme).container}>
+        <AppWrapper>
             <Text style={styles(theme).text}>Home screen</Text>
 
             <Button title='Change theme' onPress={handleTheme} />
@@ -40,7 +44,7 @@ const Screen = () => {
             <Icon name="chevron-left" 
             size={20}
             color="red"/>
-        </View>
+        </AppWrapper>
     )
 }
 
