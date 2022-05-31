@@ -15,7 +15,9 @@ const AppWrapper = ({ parentContainerStyle = {},
 
     return (
         <SafeAreaView style={[styles(theme).container, parentContainerStyle]}>
-            <ScrollView style={[styles(theme).innerContainerStyle, innerContainerStyle]}>{children}</ScrollView>
+            <ScrollView 
+            showsVerticalScrollIndicator={false}
+            style={[styles(theme).innerContainerStyle, innerContainerStyle]}>{children}</ScrollView>
         </SafeAreaView>
     )
 }
