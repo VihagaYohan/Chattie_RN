@@ -26,12 +26,15 @@ import { store } from './app/store/store'
 // screens
 import HomeScreen from './app/screens/HomeScreen'
 
+// navigators
+import {BottomNavigator} from './app/navigators'
+
 const App = () => {
 
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <HomeScreen />
+        <BottomNavigator />
       </NavigationContainer>
     </Provider>
   );
