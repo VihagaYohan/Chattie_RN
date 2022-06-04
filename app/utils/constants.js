@@ -11,6 +11,11 @@ const http = {
     MULTIPART:'MULTIPART'
 }
 
+// keys
+const keys = {
+    THEME:'THEME'
+}
+
 const gap = responsiveScreenWidth(5)
 const innerGap = responsiveScreenWidth(2)
 const buttonBorderWidth = responsiveScreenWidth(0.2)
@@ -25,6 +30,7 @@ export default {
     screenWidth:width,
     screenHeight:height,
     http,
+    keys,
     gap,
     innerGap,
     buttonBorderWidth,

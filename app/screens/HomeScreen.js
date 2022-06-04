@@ -3,26 +3,36 @@ import { StyleSheet, View, Text, Button } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeTheme } from '../store/Reducers/theme'
 import Icon from 'react-native-vector-icons/FontAwesome5'
+import { useTheme } from '@react-navigation/native'
 
 // utility
-import { utils, mode } from '../utils'
+import { utils, mode, constants } from '../utils'
 
 // components
 import { AppWrapper } from '../components'
 
-const { getData } = utils
+const { getData, storeData } = utils
+const { keys } = constants
 const { lightTheme, darkTheme } = mode
 
 const Screen = () => {
     const dispatch = useDispatch();
     const data = useSelector(state => state.theme)
     const theme = data.mode;
+    const { colors } = useTheme();
+    console.log('colors', colors)
 
 
-    const handleTheme = () => {
-        let themeMode = theme.mode === 'dark-mode' ? 'dark-mode' : 'light-mode'
+    const handleTheme = async () => {
+
+
+
+        let themeMode = theme.mode === 'dark-mode' ? 'light-mode' : 'dark-mode'
         console.log('mode', themeMode)
 
+
+        let result = await storeData(keys.THEME, theme.mode === 'dark-mode' ? 'light-mode' : 'dark-mode');
+        console.log('result', result);
 
 
         dispatch(changeTheme(themeMode === 'dark-mode' ? darkTheme : lightTheme))
@@ -44,6 +54,8 @@ const Screen = () => {
             <Icon name="chevron-left"
                 size={20}
                 color="red" />
+
+
         </AppWrapper>
     )
 }

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { colors, utils } from '../../utils'
+import { colors, utils,mode } from '../../utils'
 
 const { storeData, getData } = utils
 
@@ -14,9 +14,13 @@ const themeSlice = createSlice({
     },
     reducers: {
         changeTheme(state, data) {
+
             state.mode = data.payload
+
+           /*  state.mode = data.payload
             let obj = JSON.stringify(data.payload)
-            console.log('state changed', state.mode)
+            console.log(data.payload) */
+            //console.log('state changed', state.mode)
         }
     }
 })

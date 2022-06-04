@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // screens
 import {HomeScreen,StatusScreen,SettingsScreen} from '../screens'
