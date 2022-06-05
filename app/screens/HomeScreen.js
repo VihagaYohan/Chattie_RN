@@ -1,74 +1,88 @@
-import React, { Component } from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import React, { Component, useState } from 'react'
+import { StyleSheet, View, Text, Button, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeTheme } from '../store/Reducers/theme'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { useTheme } from '@react-navigation/native'
 
+
 // utility
-import { utils, mode, constants } from '../utils'
+import { utils, mode as themeMode, constants,appStyles } from '../utils'
 
 // components
 import { AppWrapper } from '../components'
 
+import Comment from '../../assets/images/Vector.svg'
+
 const { getData, storeData } = utils
-const { keys } = constants
-const { lightTheme, darkTheme } = mode
+const { keys, screenWidth, screenHeight } = constants
+const { lightTheme, darkTheme } = themeMode
 
 const Screen = () => {
+    const { theme } = useSelector(state => state.theme)
     const dispatch = useDispatch();
-    const data = useSelector(state => state.theme)
-    const theme = data.mode;
-    const { colors } = useTheme();
-    console.log('colors', colors)
+
+    const [currentTheme, setCurrentTheme] = useState(theme)
 
 
+
+
+    // handle theme
     const handleTheme = async () => {
+        dispatch(changeTheme(
+            theme.mode == 'light-mode' ? darkTheme : lightTheme
+        ))
 
-
-
-        let themeMode = theme.mode === 'dark-mode' ? 'light-mode' : 'dark-mode'
-        console.log('mode', themeMode)
-
-
-        let result = await storeData(keys.THEME, theme.mode === 'dark-mode' ? 'light-mode' : 'dark-mode');
-        console.log('result', result);
-
-
-        dispatch(changeTheme(themeMode === 'dark-mode' ? darkTheme : lightTheme))
+        let result = await storeData(keys.THEME,
+            theme.mode == 'light-mode' ? 'dark-mode' : 'light-mode')
     }
 
     const getTheme = async () => {
-        let result = await getData('theme')
-        console.log(result)
+        let result = await getData(keys.THEME)
+        setCurrentTheme(result)
+        console.log(currentTheme)
+    }
+
+    const setTile = () => {
+        return;
     }
 
     return (
         <AppWrapper>
-            <Text style={styles(theme).text}>Home screen</Text>
+            <TouchableOpacity style={styles(theme, currentTheme).button}
+                onPress={() => handleTheme()}>
+                <Text style={styles(theme, currentTheme).text}>change theme</Text>
+            </TouchableOpacity>
 
-            <Button title='Change theme' onPress={handleTheme} />
+            <TouchableOpacity style={styles(theme, currentTheme).button}
+                onPress={() => getTheme()}>
+                <Text style={styles(theme, currentTheme).text}>get theme</Text>
+            </TouchableOpacity>
 
-            <Button title="Get Theme" onPress={getTheme} />
-
-            <Icon name="chevron-left"
-                size={20}
-                color="red" />
+            <Text>{theme.mode}</Text>
 
 
         </AppWrapper>
     )
 }
 
-const styles = colors => StyleSheet.create({
+const styles = (colors, mode) => StyleSheet.create({
     container: {
+    
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: colors.backgroundColor
+        
+    },
+    button: {
+        borderWidth: 1,
+        paddingVertical: 10,
+        marginVertical: 10,
+        backgroundColor: colors.mode == 'light-mode' ? 'white' : 'black'
     },
     text: {
-        color: colors.primaryColor
+        color: colors.mode === 'light-mode' ? 'black' : 'white',// colors.primaryColor
     }
 })
 

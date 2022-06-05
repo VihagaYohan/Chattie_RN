@@ -1,26 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { colors, utils,mode } from '../../utils'
+import { colors, utils, mode } from '../../utils'
 
 const { storeData, getData } = utils
 
 const themeSlice = createSlice({
     name: 'theme',
     initialState: {
-        mode: {
+        theme: {
             mode: 'light-mode',
-            primaryColor: colors.primaryPurple,
-            backgroundColor: colors.primaryWhite
-        }
+            primaryColor: 'red',
+            backgroundColor: 'white'
+        },
+        message:'initial '
     },
     reducers: {
         changeTheme(state, data) {
-
-            state.mode = data.payload
-
-           /*  state.mode = data.payload
-            let obj = JSON.stringify(data.payload)
-            console.log(data.payload) */
-            //console.log('state changed', state.mode)
+            let obj = data.payload
+            console.log(obj)
+            state.theme = obj;
+           /*  state.theme.mode = obj.mode
+            state.theme.primaryColor = obj.primaryColor
+            state.theme.backgroundColor = obj.backgroundColor */
         }
     }
 })

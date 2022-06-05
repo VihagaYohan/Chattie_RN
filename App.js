@@ -18,7 +18,7 @@ import {
   View,
 } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 
 import { utils, constants } from './app/utils'
 const { getData } = utils;
@@ -36,40 +36,39 @@ import { BottomNavigator } from './app/navigators'
 
 
 const App = () => {
-  const [currentTheme, setCurrentTheme] = useState();
-  const reduxState = store.getState();
-  let { mode } = reduxState.theme;
-  let theme = mode.mode;
-  console.log('theme', theme)
+  let { theme } = store.getState()?.theme;
 
-  console.log('default theme', DefaultTheme)
+  const [mode, setMode] = useState()
+
+
+  const getCurrentTheme = async () => {
+    let result = await getData(keys.THEME);
+    setMode(result)
+    console.log(result)
+  }
 
   useEffect(() => {
-    getTheme();
+    getCurrentTheme();
   }, [])
 
-  // get async storage theme
-  const getTheme = async () => {
-    let result = await getData(keys.THEME);
-    console.log('async ', result)
-    setCurrentTheme(result)
-    return result;
-  }
+  useEffect(()=>{},[mode])
+
+
 
   const MyTheme = {
     ...DefaultTheme,
-    dark: currentTheme === 'light-mode' ? false : true,
+
     colors: {
       ...DefaultTheme.colors,
-      primary: '#0AD285',
-      background: currentTheme === 'light-mode' ? 'white' : 'black',
-      border: 'red'
+      primary: 'rgb(255, 45, 85)',
+      background: mode == 'light-mode' ? 'white' : 'black'
     },
   };
 
+
   return (
     <Provider store={store}>
-      <NavigationContainer theme={MyTheme}>
+      <NavigationContainer>
         <BottomNavigator />
       </NavigationContainer>
     </Provider>
