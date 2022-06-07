@@ -10,46 +10,30 @@ import { useTheme } from '@react-navigation/native'
 import { utils, mode as themeMode, constants,appStyles} from '../utils'
 
 // components
-import { AppWrapper } from '../components'
+import { AppWrapper,CustomText,AppHeader } from '../components'
 
 import Comment from '../../assets/images/Vector.svg'
 
 const { getData, storeData } = utils
-const { keys, screenWidth, screenHeight } = constants
+const { keys, screenWidth, screenHeight,innerGap } = constants
 const { lightTheme, darkTheme } = themeMode
+const {BoldText,RegularText} = CustomText
 
 const Screen = () => {
-    console.log(appStyles)
+    const store = useSelector(state => state.theme);
+    const {theme} = store
+
     return (
-        <AppWrapper>
-           <View style={styles({},"light-mode").box}></View>
+        <AppWrapper parentContainerStyle={styles(theme).parentContainer}>
+
+            <AppHeader/> 
         </AppWrapper>
     )
 }
 
-const styles = (colors={}, mode="") => StyleSheet.create({
-    container: {
-    
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: colors.backgroundColor
-        
-    },
-    button: {
-        borderWidth: 1,
-        paddingVertical: 10,
-        marginVertical: 10,
-        backgroundColor: colors.mode == 'light-mode' ? 'white' : 'black'
-    },
-    text: {
-        color: colors.mode === 'light-mode' ? 'black' : 'white',// colors.primaryColor
-    },
-    box:{
-        width:100,
-        height:100,
-        borderWidth:1,
-       ...appStyles.styles.background
+const styles = (colors) => StyleSheet.create({
+    parentContainer:{
+        paddingHorizontal:constants.innerGap
     }
 })
 
