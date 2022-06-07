@@ -1,25 +1,10 @@
-import {StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 
-import {utils} from '../../utils'
-
-const {getData} = utils
-
-let theme  = 'light-mode';
-
-/* const getTheme = async()=>{
-    theme = await getData("THEME");
-
-}
-
-getTheme(); */
-
-export const styles =  StyleSheet.create({
-    parentContainer:{
-        width:'100%'
+export const styles = StyleSheet.create({
+    background: {
+        backgroundColor: 'blue'
     },
-    background:{
-        backgroundColor:theme == 'light-mode' ? 'white':'black'
-    }
+    backgroundColor: 'red'
 })
 
-export default {styles};
+export default {styles }

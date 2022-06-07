@@ -7,7 +7,7 @@ import { useTheme } from '@react-navigation/native'
 
 
 // utility
-import { utils, mode as themeMode, constants,appStyles } from '../utils'
+import { utils, mode as themeMode, constants,appStyles} from '../utils'
 
 // components
 import { AppWrapper } from '../components'
@@ -19,54 +19,15 @@ const { keys, screenWidth, screenHeight } = constants
 const { lightTheme, darkTheme } = themeMode
 
 const Screen = () => {
-    const { theme } = useSelector(state => state.theme)
-    const dispatch = useDispatch();
-
-    const [currentTheme, setCurrentTheme] = useState(theme)
-
-
-
-
-    // handle theme
-    const handleTheme = async () => {
-        dispatch(changeTheme(
-            theme.mode == 'light-mode' ? darkTheme : lightTheme
-        ))
-
-        let result = await storeData(keys.THEME,
-            theme.mode == 'light-mode' ? 'dark-mode' : 'light-mode')
-    }
-
-    const getTheme = async () => {
-        let result = await getData(keys.THEME)
-        setCurrentTheme(result)
-        console.log(currentTheme)
-    }
-
-    const setTile = () => {
-        return;
-    }
-
+    console.log(appStyles)
     return (
         <AppWrapper>
-            <TouchableOpacity style={styles(theme, currentTheme).button}
-                onPress={() => handleTheme()}>
-                <Text style={styles(theme, currentTheme).text}>change theme</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles(theme, currentTheme).button}
-                onPress={() => getTheme()}>
-                <Text style={styles(theme, currentTheme).text}>get theme</Text>
-            </TouchableOpacity>
-
-            <Text>{theme.mode}</Text>
-
-
+           <View style={styles({},"light-mode").box}></View>
         </AppWrapper>
     )
 }
 
-const styles = (colors, mode) => StyleSheet.create({
+const styles = (colors={}, mode="") => StyleSheet.create({
     container: {
     
         flex: 1,
@@ -83,6 +44,12 @@ const styles = (colors, mode) => StyleSheet.create({
     },
     text: {
         color: colors.mode === 'light-mode' ? 'black' : 'white',// colors.primaryColor
+    },
+    box:{
+        width:100,
+        height:100,
+        borderWidth:1,
+       ...appStyles.styles.background
     }
 })
 
