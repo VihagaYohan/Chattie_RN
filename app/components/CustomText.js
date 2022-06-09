@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     boldText: {
         fontFamily:fonts.boldFont,
         fontSize:fonts.extraLarge,
-        color:colors.primaryBlack
+        color:colors.primaryPurple
     },
     regularText:{
         fontFamily:fonts.regularFont,

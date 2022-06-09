@@ -26,7 +26,10 @@ const Screen = () => {
     return (
         <AppWrapper parentContainerStyle={styles(theme).parentContainer}>
 
-            <AppHeader/> 
+            <AppHeader 
+            constainerStyle={styles(theme).headerCustomStyle}
+            rightIcon={true}
+            rightIconImage='https://randomuser.me/api/portraits/thumb/men/75.jpg'/> 
         </AppWrapper>
     )
 }
@@ -34,6 +37,10 @@ const Screen = () => {
 const styles = (colors) => StyleSheet.create({
     parentContainer:{
         paddingHorizontal:constants.innerGap
+    },
+    headerCustomStyle:{
+        justifyContent:'space-between',
+        alignItems:"center"
     }
 })
 
