@@ -12,19 +12,7 @@ const {getData} = utils;
 const AppWrapper = ({ parentContainerStyle = {},
     innerContainerStyle = {},
     children }) => {
-    const theme = useSelector(state => state.theme)
-
-    const [currentTheme, setCurrentTheme] = useState();
-
-    useEffect(()=>{
-        getTheme();
-    },[])
-
-    // get currnet theme
-    const getTheme = async ()=>{
-        let result = await getData(keys.THEME);
-        setCurrentTheme(result)
-    }
+    const {theme} = useSelector(state => state.theme)
 
     return (
         <SafeAreaView style={[styles(theme).container, parentContainerStyle]}>
@@ -39,6 +27,7 @@ const styles = theme => StyleSheet.create({
     container: {
         widht: screenWidth,
         height: screenHeight,
+        backgroundColor:theme == 'light-mode' ? colors.primaryWhite : colors.primaryBlack
     },
     innerContainerStyle: {
         flex: 1,
