@@ -3,10 +3,8 @@ import {
     StyleSheet, View, Text, Button, TouchableOpacity, Image,
     FlatList
 } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import { changeTheme } from '../store/Reducers/theme'
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import { useTheme } from '@react-navigation/native'
+import {useSelector} from 'react-redux'
+import { responsiveScreenHeight, responsiveScreenWidth } from 'react-native-responsive-dimensions'
 
 
 // utility
@@ -23,7 +21,7 @@ Person4 } from '../../assets/images'
 
 import Comment from '../../assets/images/Vector.svg'
 
-const { EntypoIcon } = CustomIcons
+const { EntypoIcon,FontAwesomeIcon } = CustomIcons
 
 const { getData, storeData } = utils
 const { keys, screenWidth, screenHeight, innerGap, borderRadius } = constants
@@ -126,8 +124,12 @@ const Screen = () => {
                 </View>
 
                 <View style={styles(theme).pinnedMessageSection}>
-                    <EntypoIcon name="reply"
+                   {
+                       isReplied && (
+                        <EntypoIcon name="reply"
                         color={appColors.primaryGray} />
+                       )
+                   }
                     <RegularText style={styles(theme).lastMessage}
                     numerOfLines={1}>{lastMessage}</RegularText>
                 </View>
@@ -155,10 +157,7 @@ const Screen = () => {
                         <View
                             style={styles(theme).pinnedChatItemContainer}>
 
-                            <View style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between'
-                            }}>
+                            <View style={styles(theme).pinnedChatsRow}>
                                 <PinnedChatsContainer
                                     contactName={item.dataSet[0].name}
                                     isReplied={item.dataSet[0].isReplied}
@@ -171,10 +170,7 @@ const Screen = () => {
                                     image={item.dataSet[1].image} />
                             </View>
 
-                            <View style={{
-                                flexDirection: 'row',
-                                justifyContent: 'space-between'
-                            }}>
+                            <View style={styles(theme).pinnedChatsRow}>
                                 <PinnedChatsContainer
                                     contactName={item.dataSet[2].name}
                                     isReplied={item.dataSet[2].isReplied}
@@ -190,6 +186,14 @@ const Screen = () => {
                     )
                 }} />
 
+            {/* recent chats title and search */}
+            <View style={styles(theme).recentChatTitleContainer}>
+                <BoldText>Recent Chats</BoldText>
+                <FontAwesomeIcon 
+                name="search"
+                color={appColors.primaryGray}
+                size={responsiveScreenWidth(6)}/>
+            </View>
 
         </AppWrapper>
     )
@@ -203,12 +207,14 @@ const styles = (colors) => StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: "center"
     },
+
+    /* pinned chat section styles */
     pinnedChatsContainer: {
         marginTop: constants.gap
     },
     pinnedChatsRow: {
         flexDirection: 'row',
-
+        justifyContent: 'space-between'
     },
     pinnedChatItemContainer:{
          marginTop:constants.gap,
@@ -246,14 +252,23 @@ const styles = (colors) => StyleSheet.create({
     },
     contactName: {
         color: colors === 'light-mode' ? appColors.primaryBlack : appColors.primaryWhite,
-        fontSize: fonts.regular
+        fontSize: fonts.regular,
     },
     pinnedMessageSection: {
         flexDirection: 'row'
     },
     lastMessage: {
         color: appColors.primaryGray,
-        fontSize: fonts.small
+        fontSize: fonts.small,
+        marginLeft:10
+    },
+
+    // recent chat title and search
+    recentChatTitleContainer:{
+        ...appStyles.flex_Row,
+        justifyContent:'space-between',
+        alignItems:'center',
+        marginTop:constants.gap
     }
 })
 
