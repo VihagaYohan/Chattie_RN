@@ -24,6 +24,7 @@ const buttonHeight = responsiveScreenHeight(6)
 const smallButtonHeight = responsiveScreenHeight(4.5)
 const buttonShadow = {width:responsiveScreenWidth(1), height:responsiveScreenHeight(1)}
 const buttonShadowOpacity = 0.08
+const iconSize = responsiveScreenWidth(5)
 
 
 export default {
@@ -38,5 +39,6 @@ export default {
     buttonHeight,
     smallButtonHeight,
     buttonShadow,
-    buttonShadowOpacity
+    buttonShadowOpacity,
+    iconSize
 }
