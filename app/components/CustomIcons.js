@@ -3,6 +3,7 @@ import {StyleSheet,View,Text} from 'react-native'
 //import {Entypo,FontAwesome} from 'react-native-vector-icons'
 import Entypo from 'react-native-vector-icons/Entypo'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import {colors,constants} from '../utils'
 
@@ -38,7 +39,23 @@ export const FontAwesomeIcon = ({
     )
 }
 
+export const IoniconsIcon = ({
+    name,
+    color=colors.primaryBlack,
+    size=iconSize,
+    onPress=()=>{return}
+})=>{
+    return(
+        <Ionicons 
+        name={name}
+        size={size}
+        color={color}
+        onPress={onPress}/>
+    )
+}
+
 export default {
     EntypoIcon,
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    IoniconsIcon
 }
