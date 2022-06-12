@@ -8,7 +8,7 @@ import {constants,colors as appColors,} from '../utils'
 // components
 import {ConversationItem} from './index'
 
-const AppList = ({dataSource, ...otherProps})=>{
+const AppList = ({dataSource,containerStyle ,...otherProps})=>{
     const store = useSelector(state => state.theme);
     const { theme } = store
 
@@ -16,6 +16,7 @@ const AppList = ({dataSource, ...otherProps})=>{
 
     return(
         <FlatList
+        contentContainerStyle={containerStyle}
         data={dataSource}
         {...otherProps}
         keyExtractor={({item,index}) => index}
