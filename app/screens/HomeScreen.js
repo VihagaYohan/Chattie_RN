@@ -11,7 +11,7 @@ import { responsiveScreenHeight, responsiveScreenWidth } from 'react-native-resp
 import { utils, mode as themeMode, constants, appStyles, colors as appColors, fonts } from '../utils'
 
 // components
-import { AppWrapper, CustomText, AppHeader, CustomIcons } from '../components'
+import { AppWrapper, CustomText, AppHeader, CustomIcons, AppList } from '../components'
 
 // assets
 import { Person1,
@@ -19,7 +19,8 @@ Person2,
 Person3,
 Person4 } from '../../assets/images'
 
-import Comment from '../../assets/images/Vector.svg'
+// local data
+import Conversations from '../data/ChatRooms'
 
 const { EntypoIcon,FontAwesomeIcon } = CustomIcons
 
@@ -100,6 +101,7 @@ const Screen = () => {
     const store = useSelector(state => state.theme);
     const { theme } = store
 
+    console.log('conversations',Conversations)
     // pinned chats container
     const PinnedChatsContainer = ({ contactName, image, lastMessage, isReplied }) => {
         let nameResult = contactName.split(' ');
@@ -194,6 +196,11 @@ const Screen = () => {
                 color={appColors.primaryGray}
                 size={responsiveScreenWidth(6)}/>
             </View>
+
+            {/* recent chats list */}
+            <AppList
+            dataSource={Conversations}
+            />    
 
         </AppWrapper>
     )
