@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg826"
+   enable-background="new"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="chattie_logo.svg">
+  <defs
+     id="defs820">
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4698">
+      <feBlend
+         inkscape:collect="always"
+         mode="multiply"
+         in2="BackgroundImage"
+         id="feBlend4700" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="136.57008"
+     inkscape:cy="695.2983"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="1324"
+     inkscape:window-height="704"
+     inkscape:window-x="42"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1">
+    <sodipodi:guide
+       position="394.60714,347.7381"
+       orientation="0.70710678,0.70710678"
+       id="guide834"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata823">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="opacity:1">
+    <g
+       id="g4773"
+       transform="translate(-3.7797617,-7.1815476)">
+      <rect
+         ry="11.567034"
+         y="39.583969"
+         x="69.376129"
+         height="35.948078"
+         width="38.72089"
+         id="rect4722"
+         style="opacity:1;fill:#27db8f;fill-opacity:1;stroke:#27db8f;stroke-width:4.28863287;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:normal" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path828"
+         d="m 89.003936,43.771743 a 13.127523,13.127523 0 0 0 -13.12755,13.127358 13.127523,13.127523 0 0 0 2.119189,7.146123 l -2.119189,6.828453 7.676248,-2.04701 a 13.127523,13.127523 0 0 0 5.451302,1.19999 A 13.127523,13.127523 0 0 0 102.13148,56.899101 13.127523,13.127523 0 0 0 89.003936,43.771743 Z"
+         style="opacity:1;fill:#27db8f;fill-opacity:1;stroke:#fcfffe;stroke-width:2.17499995;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers" />
+      <path
+         style="opacity:0.98999999;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.02953693;stroke-miterlimit:4;stroke-dasharray:0.02953693, 0.05907386;stroke-dashoffset:0;stroke-opacity:0"
+         inkscape:connector-curvature="0"
+         d="m 88.736573,57.336427 q -1.392369,0 -2.278422,-0.886057 -0.886053,-0.886051 -0.886053,-2.278421 0,-1.392369 0.886053,-2.278421 0.886053,-0.886051 2.278422,-0.886051 1.39237,0 2.278423,0.886051 0.886053,0.886052 0.886053,2.278421 0,1.39237 -0.886053,2.278421 -0.886053,0.886057 -2.278423,0.886057 z m -6.750881,6.771976 v -1.98307 q 0,-0.801669 0.400833,-1.371274 0.400835,-0.569606 1.03373,-0.864956 1.413465,-0.632898 2.710901,-0.949344 1.297434,-0.316446 2.605417,-0.316446 1.307983,0 2.594869,0.326997 1.286887,0.326991 2.700352,0.938793 0.653994,0.29535 1.054828,0.864956 0.400834,0.569605 0.400834,1.371274 v 1.98307 z m 1.26579,-1.26579 H 94.22166 v -0.71728 q 0,-0.337548 -0.200411,-0.643443 -0.200417,-0.305901 -0.495773,-0.453577 -1.350173,-0.653993 -2.468288,-0.896602 -1.118115,-0.242608 -2.320615,-0.242608 -1.202501,0 -2.341712,0.242608 -1.139211,0.242609 -2.46829,0.896602 -0.295352,0.14767 -0.48522,0.453577 -0.189869,0.305895 -0.189869,0.643443 z m 5.485091,-6.771976 q 0.822763,0 1.360725,-0.537964 0.537961,-0.537959 0.537961,-1.360724 0,-0.822764 -0.537961,-1.360723 -0.537962,-0.537959 -1.360725,-0.537959 -0.822764,0 -1.360725,0.537959 -0.53796,0.537959 -0.53796,1.360723 0,0.822765 0.53796,1.360724 0.537961,0.537964 1.360725,0.537964 z m 0,-1.898688 q 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 z m 0,8.670664 q 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 0,0 z"
+         id="path4584" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Nimbus Roman';-inkscape-font-specification:'Nimbus Roman, ';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="64.640419"
+       y="84.955345"
+       id="text4796"><tspan
+         sodipodi:role="line"
+         id="tspan4794"
+         x="64.640419"
+         y="84.955345"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:12.69999981px;font-family:Pagul;-inkscape-font-specification:Pagul;text-align:start;text-anchor:start;stroke-width:0.26458332;fill:#27db8f;fill-opacity:1">Chattie</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Layer 2" />
+</svg>
