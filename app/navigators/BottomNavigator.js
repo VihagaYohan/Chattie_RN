@@ -1,10 +1,13 @@
 import React, { Component, useEffect, useRef } from 'react'
-import {View} from 'react-native'
+import {View,Animated} from 'react-native'
 import { createBottomTabNavigator,useBottomTabBarHeight } from '@react-navigation/bottom-tabs';
 import { useDispatch,useSelector } from 'react-redux'
 
 // screens
 import { HomeScreen, StatusScreen, SettingsScreen } from '../screens'
+
+// navigators
+import {ChatNavigator} from '../navigators'
 
 // components
 import { CustomIcons } from '../components'
@@ -73,6 +76,7 @@ const Navigator = () => {
                 options={{
                     title: "Chats",
                     tabBarIcon: ({ focused, color, size }) => {
+                        
                         return (
                             <IoniconsIcon
                                 name="chatbubbles"
@@ -81,7 +85,7 @@ const Navigator = () => {
                         )
                     }
                 }} />
-            <Tab.Screen name="Status" component={StatusScreen} 
+            <Tab.Screen name="Status" component={ChatNavigator} 
               options={{
                 title: 'Settings',
                 tabBarIcon: ({ focused, color, size }) => {
@@ -112,16 +116,16 @@ const Navigator = () => {
                     }
                 }} />
         </Tab.Navigator>
-
+{/* 
         <View style={{
-                width:50,
+                width:constants.screenWidth/3,
                 height:5,
                 backgroundColor:'red',
                position:'absolute',
                 bottom:constants.screenHeight - (constants.screenHeight-50),
-                left:10
-                ,alignSelf:'center'
-            }}></View>
+                left:0
+                ,alignSelf:'center',
+            }}></View> */}
         </React.Fragment>
     )
 }
