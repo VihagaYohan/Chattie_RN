@@ -19,7 +19,7 @@ const AppHeader = ({ title, constainerStyle, rightIcon = false, rightIconImage }
 
     return (
         <View style={[styles(theme).container, constainerStyle]}>
-            <BoldText>Pinned Chats</BoldText>
+            <BoldText>{title}</BoldText>
             {
                 rightIcon === true && (
                     <TouchableOpacity style={styles(theme).iconContainer}>

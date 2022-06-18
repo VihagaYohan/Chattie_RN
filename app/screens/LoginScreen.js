@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from 'react-native'
 // components
 import { AppWrapper, AppTextField, AppButton } from '../components'
 
-const Screen = () => {
+const Screen = ({navigation}) => {
     const [phoneNumber, setPhoneNumber] = useState();
     const [password, setPassword] = useState();
 
@@ -40,16 +40,10 @@ const Screen = () => {
 
                 <AppButton
                 title="Login"
-                onPress={()=>{return}}/>
+                onPress={()=>{navigation.navigate("BottomNavigator")}}/>
 
         </AppWrapper>
     )
-
-    /*   return(
-          <View>
-  
-          </View>
-      ) */
 }
 
 const styles = theme => StyleSheet.create({

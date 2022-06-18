@@ -24,6 +24,9 @@ import {
 // local data
 import Conversations from '../data/ChatRooms'
 
+// routes
+import routes from '../navigators/routes'
+
 const { EntypoIcon, FontAwesomeIcon } = CustomIcons
 
 const { getData, storeData } = utils
@@ -99,9 +102,11 @@ const DATA_PINNEDCHATS = [
 
 ]
 
-const Screen = () => {
+const Screen = ({navigation}) => {
     const store = useSelector(state => state.theme);
     const { theme } = store
+
+    console.log('theme here', theme)
 
     console.log('conversations', Conversations)
     // pinned chats container
@@ -148,6 +153,7 @@ const Screen = () => {
             <AppWrapper parentContainerStyle={styles(theme).parentContainer}>
 
                 <AppHeader
+                    title="Pinned Chats"
                     constainerStyle={styles(theme).headerCustomStyle}
                     rightIcon={true}
                     rightIconImage='https://randomuser.me/api/portraits/thumb/men/75.jpg' />
@@ -215,7 +221,10 @@ const Screen = () => {
 
             {/* floating action button */}        
             <TouchableOpacity
-                style={styles(theme).floatingButtonContainer}>
+                style={styles(theme).floatingButtonContainer}
+                onPress={()=>navigation.navigate(routes.Conversation,{
+                    name:"John"
+                })}>
                     <FontAwesomeIcon
                     name="comment"
                     size={constants.iconSize}

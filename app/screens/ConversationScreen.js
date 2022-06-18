@@ -27,6 +27,10 @@ const ConversationScreen = ({ route }) => {
         })
     }, [])
 
+    useEffect(()=>{
+        console.log('new message')
+    },[messages])
+
     const handleSend = () => {
         socketRef.current.emit('message', message)
     }
@@ -49,7 +53,7 @@ const ConversationScreen = ({ route }) => {
                 messages.length > 1 &&
                 messages.map(item => {
                     return (
-                        <Text>{item}</Text>
+                        <Text key={JSON.stringify(item)}>{item}</Text>
                     )
                 })
             }

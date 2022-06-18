@@ -6,12 +6,13 @@ const { storeData, getData } = utils
 const themeSlice = createSlice({
     name: 'theme',
     initialState: {
-        theme: {
+        theme:"light-mode"
+        /* theme: {
             mode: 'light-mode',
             primaryColor: 'red',
             backgroundColor: 'white'
         },
-        message:'initial '
+        message:'initial ' */
     },
     reducers: {
         changeTheme(state, data) {

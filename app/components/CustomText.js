@@ -5,7 +5,7 @@ import { StyleSheet, Text } from 'react-native'
 import { fonts, colors } from '../utils'
 
 // bold text
-export const BoldText = ({ children, style,props }) => {
+export const BoldText = ({ children, style,...props }) => {
     return (
         <Text style={[styles.boldText,
             style]} {...props}>{children}</Text>
@@ -13,7 +13,7 @@ export const BoldText = ({ children, style,props }) => {
 }
 
 // regular text
-export const RegularText = ({children, style, props})=>{
+export const RegularText = ({children, style, ...props})=>{
     return(
         <Text style={[styles.regularText,style]} 
         {...props}>{children}</Text>
