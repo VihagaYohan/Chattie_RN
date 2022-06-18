@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, View, TouchableOpacity, Image } from 'react-native'
+import {useSelector} from 'react-redux'
 
 // hooks
 import { useTheme } from '../hooks/index'
@@ -14,8 +15,7 @@ const { BoldText,RegularText } = CustomText
 const { gap } = constants
 
 const AppHeader = ({ title, constainerStyle, rightIcon = false, rightIconImage }) => {
-    const [theme, setTheme] = useTheme('light-mode');
-    console.log('theme', theme)
+   const {theme} = useSelector(state => state.theme)
 
     return (
         <View style={[styles(theme).container, constainerStyle]}>
@@ -32,9 +32,10 @@ const AppHeader = ({ title, constainerStyle, rightIcon = false, rightIconImage }
     )
 }
 
-const styles = colors => StyleSheet.create({
+const styles = theme => StyleSheet.create({
     container: {
-        backgroundColor: colors === 'light-mode' ? mode.lightTheme.backgroundColor : mode.darkTheme.backgroundColor,
+        backgroundColor:theme=='light-mode'?mode.lightTheme.backgroundColor:
+        mode.darkTheme.backgroundColor,
         width: "100%",
         flexDirection: 'row',
         alignItems: 'center'

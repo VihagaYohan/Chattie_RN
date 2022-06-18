@@ -102,7 +102,7 @@ const DATA_PINNEDCHATS = [
 
 ]
 
-const Screen = ({navigation}) => {
+const Screen = ({ navigation }) => {
     const store = useSelector(state => state.theme);
     const { theme } = store
 
@@ -136,7 +136,7 @@ const Screen = ({navigation}) => {
                     {
                         isReplied && (
                             <EntypoIcon name="reply"
-                                color={appColors.primaryGray} />
+                                color={theme == 'light-mode' ? appColors.primaryGray : appColors.primaryWhite} />
                         )
                     }
                     <RegularText style={styles(theme).lastMessage}
@@ -214,21 +214,21 @@ const Screen = ({navigation}) => {
                     dataSource={Conversations}
                 />
 
-                
+
 
 
             </AppWrapper>
 
-            {/* floating action button */}        
+            {/* floating action button */}
             <TouchableOpacity
                 style={styles(theme).floatingButtonContainer}
-                onPress={()=>navigation.navigate(routes.Conversation,{
-                    name:"John"
+                onPress={() => navigation.navigate(routes.Conversation, {
+                    name: "John"
                 })}>
-                    <FontAwesomeIcon
+                <FontAwesomeIcon
                     name="comment"
                     size={constants.iconSize}
-                    color={theme === 'light-mode' ? appColors.primaryWhite : appColors.primaryBlack}/>
+                    color={theme === 'light-mode' ? appColors.primaryWhite : appColors.primaryBlack} />
             </TouchableOpacity>
         </React.Fragment>
     )
@@ -270,6 +270,8 @@ const styles = (colors) => StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
+        borderWidth: 1,
+        borderColor: colors === 'light-mode' ? appColors.primaryWhite : appColors.primaryWhite,
 
         elevation: 5
     },
@@ -293,7 +295,7 @@ const styles = (colors) => StyleSheet.create({
         flexDirection: 'row'
     },
     lastMessage: {
-        color: appColors.primaryGray,
+        color: colors == 'light-mode' ? appColors.primaryGray : appColors.primaryWhite,
         fontSize: fonts.small,
         marginLeft: 10
     },
@@ -312,16 +314,16 @@ const styles = (colors) => StyleSheet.create({
     },
 
     // floating action button
-    floatingButtonContainer:{
+    floatingButtonContainer: {
         position: 'absolute',
         bottom: 50,
         right: 10,
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor:appColors.primaryPurple,
-        justifyContent:'center',
-        alignItems:'center'
+        backgroundColor: appColors.primaryPurple,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 
