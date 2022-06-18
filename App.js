@@ -31,7 +31,7 @@ import { store } from './app/store/store'
 import HomeScreen from './app/screens/HomeScreen'
 
 // navigators
-import { BottomNavigator } from './app/navigators'
+import { BottomNavigator, AuthNavigator } from './app/navigators'
 
 
 
@@ -69,7 +69,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <BottomNavigator />
+        <AuthNavigator />
       </NavigationContainer>
     </Provider>
   );

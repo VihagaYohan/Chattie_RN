@@ -1,5 +1,5 @@
-import React, { Component, useState, useRef,useEffect  } from 'react'
-import { StyleSheet, View, TouchableOpacity, FlatList, TextInput,Text } from 'react-native'
+import React, { Component, useState, useRef, useEffect } from 'react'
+import { StyleSheet, View, TouchableOpacity, FlatList, TextInput, Text } from 'react-native'
 import { useSelector } from 'react-redux'
 import io from 'socket.io-client'
 
@@ -10,14 +10,22 @@ const ConversationScreen = ({ route }) => {
     const { theme } = useSelector(state => state.theme)
     const { name } = route.params
 
-    const [messages, setMessages] = useState();
+    const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState();
 
     const socketRef = useRef();
 
-    useEffect(()=>{
+    // message from server
+
+
+    useEffect(() => {
         socketRef.current = io('http://192.168.1.7:5000')
-    },[])
+
+        socketRef.current.on('message', message => {
+            console.log(message)
+            setMessages(message)
+        })
+    }, [])
 
     const handleSend = () => {
         socketRef.current.emit('message', message)
@@ -36,6 +44,15 @@ const ConversationScreen = ({ route }) => {
                 onPress={() => handleSend()}>
                 <Text>Send Message</Text>
             </TouchableOpacity>
+
+            {
+                messages.length > 1 &&
+                messages.map(item => {
+                    return (
+                        <Text>{item}</Text>
+                    )
+                })
+            }
 
         </AppWrapper>
     )
