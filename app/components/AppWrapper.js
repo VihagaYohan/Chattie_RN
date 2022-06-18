@@ -14,11 +14,13 @@ const AppWrapper = ({ parentContainerStyle = {},
     children }) => {
     const {theme} = useSelector(state => state.theme)
 
+    const {mode} = theme
+
     return (
-        <SafeAreaView style={[styles(theme).container, parentContainerStyle]}>
+        <SafeAreaView style={[styles(mode).container, parentContainerStyle]}>
             <ScrollView 
             showsVerticalScrollIndicator={false}
-            style={[styles(theme).innerContainerStyle, innerContainerStyle]}>{children}</ScrollView>
+            style={[styles(mode).innerContainerStyle, innerContainerStyle]}>{children}</ScrollView>
         </SafeAreaView>
     )
 }
@@ -31,7 +33,7 @@ const styles = theme => StyleSheet.create({
     },
     innerContainerStyle: {
         flex: 1,
-        //backgroundColor: colors.primaryWhite
+        backgroundColor: theme == 'light-mode' ? colors.primaryWhite : colors.primaryBlack
     }
 })
 

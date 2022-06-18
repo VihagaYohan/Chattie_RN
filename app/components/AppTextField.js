@@ -48,7 +48,7 @@ const styles = theme => StyleSheet.create({
         alignItems:'center',
         paddingHorizontal:constants.innerGap*2,
         borderWidth: 1,
-        borderColor: theme === 'light-mode' ? colors.lightGray : colors.primaryPurple,
+        borderColor: theme === 'light-mode' ? colors.lightGray2 : colors.primaryPurple,
         backgroundColor:theme === 'light-mode' ? colors.primaryWhite: colors.primaryBlack,
     },
     textField: {

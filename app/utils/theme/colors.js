@@ -11,5 +11,6 @@ export default {
 
     // gray
     primaryGray:"F9F9F9",
-    lightGray:"#F7F7F7"
+    lightGray:"#F7F7F7",
+    lightGray2:'#d7dbd8',
 }
