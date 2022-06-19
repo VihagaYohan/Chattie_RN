@@ -1,6 +1,6 @@
 
 export const BASE_URL = {
-    development:"https://192.168.1.7:5000",
+    development:"http://192.168.1.7:5000",
     production:"https://192.168.1.7:5000"
 }
 

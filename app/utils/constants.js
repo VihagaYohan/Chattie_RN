@@ -13,7 +13,8 @@ const http = {
 
 // keys
 const keys = {
-    THEME:'THEME'
+    THEME:'THEME',
+    ACCESS_TOKEN:'ACCESS_TOKEN'
 }
 
 const gap = responsiveScreenWidth(5)

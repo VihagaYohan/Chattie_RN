@@ -1,13 +1,17 @@
-import axios from 'axios'
+import axios from 'axios';
+import {BASE_URL} from './Environment'
 
-import { BASE_URL } from './Environment'
+const axiosClient = axios.create();
 
-const instance = axios.create({
-    baseURL: BASE_URL.development,
-    timeout: 2000,
-    headers: {
-        'content-type': "application/json"
-    }
-})
+axiosClient.defaults.baseURL = BASE_URL.development;
 
-export default instance;
+axiosClient.defaults.headers = {
+    'Content-Type':'application/json',
+    Accept:"application/json"
+};
+
+axiosClient.defaults.timeout = 2000;
+
+//axiosClient.defaults.withCredentials = true;
+
+export default axiosClient;
