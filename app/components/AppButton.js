@@ -25,7 +25,6 @@ const AppButton = ({
 const styles = theme => StyleSheet.create({
     container:{
         ...appStyles.flex_Row,
-        borderWidth:1,
         justifyContent:'center',
         alignItems:'center',
         width:'100%',
