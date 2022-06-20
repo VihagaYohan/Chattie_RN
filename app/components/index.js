@@ -7,3 +7,6 @@ export {default as ConversationItem} from './ConversationItem'
 export {default as AppTextField} from './AppTextField'
 export {default as AppButton} from './AppButton'
 export {default as AppSeparator} from './AppSeparator'
+
+// form components
+export {default as FormError} from './Form/FormError'

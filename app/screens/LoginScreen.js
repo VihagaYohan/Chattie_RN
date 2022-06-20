@@ -5,46 +5,55 @@ import {
     Image
 } from 'react-native'
 import { Formik } from 'formik'
+import * as Yup from 'yup';
 
 // hooks
 import { useTheme } from '../hooks'
 
 // components
-import { AppWrapper, AppTextField, AppButton, CustomIcons, CustomText } from '../components'
+import { AppWrapper, AppTextField, AppButton, CustomIcons, CustomText,
+FormError } from '../components'
 
 // utils
-import { appStyles, colors, constants, fonts,utils } from '../utils'
+import { appStyles, colors, constants, fonts, utils } from '../utils'
 
 // api services
-import {userLogin} from '../services/Auth'
+import { userLogin } from '../services/Auth'
+
+// routes
+import routes from '../navigators/routes';
 
 import Logo from '../../assets/images/logo.svg'
 
 const { FontAwesomeIcon } = CustomIcons
 const { BoldText } = CustomText
-const {storeData} = utils
+const { storeData } = utils
+
+// login form validation
+const loginValidation = Yup.object().shape({
+    email: Yup.string().email('Invalid email address, please check again')
+        .required('Email address required'),
+    password: Yup.string().required('Password required')
+})
 
 const Screen = ({ navigation }) => {
     const [theme, setTheme] = useTheme();
 
     const handleLogin = async (email, password) => {
-       try{
-       const {data} = await userLogin({email:email,password:password})
-       const result = await storeData(constants.keys.ACCESS_TOKEN,data.token);
-       console.log(result)
-       }catch(e){
-        console.log(e)
-       }
+        try {
+           const { data } = await userLogin({ email: email, password: password })
+           await storeData(constants.keys.ACCESS_TOKEN, data.token);
+
+           navigation.navigate(routes.BottomNavigator)
+
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     return (
 
-        <AppWrapper parentContainerStyle={{
-            backgroundColor: 'white', flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingHorizontal: constants.innerGap
-        }}>
+        <AppWrapper parentContainerStyle={styles(theme).parentContainerStyle}>
             <KeyboardAvoidingView style={styles(theme).innerContainer}>
 
                 <Logo
@@ -58,12 +67,15 @@ const Screen = ({ navigation }) => {
 
                 <Formik
                     initialValues={{
-                        email: "vihagayohan94@gmail.com",
-                        password: "Lol@117"
+                        email:"",
+                        password:""
                     }}
-                    onSubmit={values => console.log(values)}>
+                    validationSchema={loginValidation}
+                    onSubmit={values => handleLogin(values.email, values.password)}>
 
                     {({
+                        errors,
+                        touched,
                         handleChange,
                         handleBlur,
                         handleSubmit,
@@ -83,6 +95,10 @@ const Screen = ({ navigation }) => {
                                 />
                             </View>
 
+                            {errors.email && touched.email ? (
+                               <FormError>{errors.email}</FormError>
+                            ) : null}
+
                             <View style={styles(theme).textFieldContainer}>
                                 <FontAwesomeIcon
                                     name="lock"
@@ -96,11 +112,14 @@ const Screen = ({ navigation }) => {
                                     onBlur={handleBlur('password')} />
                             </View>
 
+                            {errors.password && touched.password ? (
+                                 <FormError>{errors.password}</FormError>
+                            ) : null}
+
                             <AppButton
                                 roundConners={true}
                                 title="Sign in"
-                                onPress={() => handleLogin(values.email,
-                                    values.password)} />
+                                onPress={handleSubmit} />
 
                         </React.Fragment>
                     )}
@@ -115,12 +134,17 @@ const Screen = ({ navigation }) => {
 }
 
 const styles = theme => StyleSheet.create({
-    innerContainer: {
+    parentContainerStyle: {
+        backgroundColor: 'white',
         width: constants.screenWidth,
         height: constants.screenHeight,
-        justifyContent: 'center',
+        paddingHorizontal: constants.innerGap,
+        borderWidth: 1
+    },
+    innerContainer: {
+        height: constants.screenHeight,
         alignItems: 'center',
-        backgroundColor: theme == 'light-mode' ? colors.primaryWhite : colors.primaryBlack,
+        justifyContent: 'center'
     },
     title: {
         fontSize: fonts.extraLarge * 2

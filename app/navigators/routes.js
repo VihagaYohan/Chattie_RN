@@ -5,5 +5,6 @@ export default Object.freeze({
     Settings:"Settings",
     
     // conversation navigator
-    Conversation:"Conversation"
+    Conversation:"Conversation",
+    BottomNavigator:"BottomNavigator"
 })
