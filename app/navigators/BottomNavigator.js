@@ -64,7 +64,7 @@ const Navigator = () => {
         initialRouteName='Chats'   
         tabBarOptions={{
             activeTintColor: colors.primaryPurple,
-            inactiveTintColor: colors.primaryGray,
+            inactiveTintColor: theme == 'light-mode' ? colors.lightGray3 : colors.primaryWhite,
             labelPosition:"below-icon",
             style:{
                 backgroundColor:theme === 'light-mode' ? colors.primaryWhite:colors.primaryBlack,
@@ -85,6 +85,7 @@ const Navigator = () => {
                         )
                     }
                 }} />
+
             <Tab.Screen name="Status" component={ChatNavigator} 
               options={{
                 title: 'Settings',

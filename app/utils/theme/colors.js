@@ -13,6 +13,7 @@ export default {
     primaryGray:"F9F9F9",
     lightGray:"#F7F7F7",
     lightGray2:'#d7dbd8',
+    lightGra3:"#D9D9D9",
 
     // red
     primaryRed:'#F20F38',
