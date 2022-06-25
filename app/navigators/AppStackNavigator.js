@@ -6,9 +6,15 @@ import {ConversationScreen, SampleScreen,
 SearchUsersScreen,
 HomeScreen} from '../screens'
 
+// utils
+import {utils,constants} from '../utils'
+
+const {getData} = utils
+
 const Stack = createStackNavigator();
 
 const Navigator = ()=>{
+
     return(
         <Stack.Navigator initialRouteName='Home' screenOptions={{
             headerShown:false

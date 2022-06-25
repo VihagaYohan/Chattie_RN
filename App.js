@@ -31,57 +31,14 @@ import { store } from './app/store/store'
 import HomeScreen from './app/screens/HomeScreen'
 
 // navigators
-import { BottomNavigator, AuthNavigator } from './app/navigators'
+import { BottomNavigator, AuthNavigator,
+AppNavigator } from './app/navigators'
 
 const App = () => {
-  let { theme } = store.getState()?.theme;
-
-  const [mode, setMode] = useState()
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  /* 
-    const getCurrentTheme = async () => {
-      let result = await getData(keys.THEME);
-      setMode(result)
-      console.log(result)
-    }
-  
-    useEffect(() => {
-      getCurrentTheme();
-    }, [])
-  
-    useEffect(()=>{},[mode])
-   */
-
-
-  const MyTheme = {
-    ...DefaultTheme,
-
-    colors: {
-      ...DefaultTheme.colors,
-      primary: 'rgb(255, 45, 85)',
-      background: mode == 'light-mode' ? 'white' : 'black'
-    },
-  };
-
-  useEffect(() => {
-    isUserLogin();
-  }, [])
-
-  const isUserLogin = async () => {
-    let result = await getData(constants.keys.ACCESS_TOKEN);
-    console.log(result)
-    if (result == undefined || null) {
-      setIsLoggedIn(false)
-    } else {
-      setIsLoggedIn(true)
-    }
-  }
-
   return (
     <Provider store={store}>
       <NavigationContainer>
-        {isLoggedIn == true ? <BottomNavigator/> : <AuthNavigator/>}
+        <AppNavigator/>
       </NavigationContainer>
     </Provider>
   );
