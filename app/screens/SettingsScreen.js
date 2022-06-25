@@ -12,6 +12,9 @@ import { CustomText, AppHeader, AppWrapper, AppSeparator, CustomIcons } from '..
 import { colors, utils, appStyles, constants, fonts } from '../utils'
 import { changeTheme } from '../store/Reducers/theme'
 
+// api services
+import {userLogout} from '../services/Auth'
+
 const { BoldText, RegularText } = CustomText
 const { FontAwesomeIcon5, IoniconsIcon } = CustomIcons
 
@@ -27,6 +30,16 @@ const SettingsScreen = () => {
             dispatch(changeTheme('dark-mode'))
         }else{
             dispatch(changeTheme('light-mode'))
+        }
+    }
+
+    // handle logout
+    const userLogout = async()=>{
+        try{
+            let result = await userLogout();
+            console.log('logout',result)
+        }catch(e){
+            console.log(e)
         }
     }
 
@@ -72,6 +85,19 @@ const SettingsScreen = () => {
                 />
 
             </View>
+
+             {/* footer */}       
+           <View style={{
+            marginTop:constants.gap
+           }}>
+             <TouchableOpacity style={{
+                width:'100%',
+                justifyContent:'center',
+                alignItems:'center'
+             }} onPress={userLogout}>
+                <RegularText>Logout</RegularText>
+             </TouchableOpacity>
+           </View>
         </AppWrapper>
     )
 }

@@ -6,5 +6,6 @@ export default Object.freeze({
     
     // conversation navigator
     Conversation:"Conversation",
+    SearchUser:"SearchUser",
     BottomNavigator:"BottomNavigator"
 })

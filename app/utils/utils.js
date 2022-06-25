@@ -20,7 +20,18 @@ const getData = async(key)=>{
     }
 }
 
+// remove data from async storage
+const removeData = async(key)=>{
+    try{
+        let result = await AsyncStorage.removeItem(key);
+        return result;
+    }catch(e){
+        console.log(e)
+    }
+}
+
 export default {
     storeData,
-    getData
+    getData,
+    removeData
 }

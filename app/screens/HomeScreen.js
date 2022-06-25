@@ -205,7 +205,10 @@ const Screen = ({ navigation }) => {
                     <FontAwesomeIcon
                         name="search"
                         color={appColors.primaryGray}
-                        size={responsiveScreenWidth(6)} />
+                        size={responsiveScreenWidth(6)}
+                        onPress={()=>{
+                            navigation.navigate(routes.SearchUser)
+                        }} />
                 </View>
 
                 {/* recent chats list */}

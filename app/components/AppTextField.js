@@ -21,22 +21,28 @@ const AppTextField = ({
 }) => {
     const { theme } = useSelector(state => state.theme)
 
-    const {mode} = theme;
 
     return (
-        <View style={[styles(mode).container,
+        <View style={[styles(theme).container,
         {
             borderRadius: roundConners === true ? constants.gap * 2 : null
         }]}>
             {leftIcon && (
                 <FontAwesomeIcon
                     name={leftIconName}
-                    color={colors.primaryPurple}
+                    color={theme == 'light-mode' ? colors.lightGray2 : colors.primaryPurple}
                     />
             )}
             <TextInput
-                style={styles(mode).textField}
+                style={styles(theme).textField}
                 onChangeText={e => onChangeText(e)} {...otherProps} />
+
+            {rightIcon && (
+                <FontAwesomeIcon
+                name={rightIconName}
+                color={theme == 'light-mode' ? colors.lightGray2 : colors.primaryPurple}
+                />
+            )}    
         </View>
 
     )

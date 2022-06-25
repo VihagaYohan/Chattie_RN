@@ -7,7 +7,8 @@ import { useDispatch,useSelector } from 'react-redux'
 import { HomeScreen, StatusScreen, SettingsScreen } from '../screens'
 
 // navigators
-import {ChatNavigator} from '../navigators'
+import {ChatNavigator,
+    AppStackNavigator} from '../navigators'
 
 // components
 import { CustomIcons } from '../components'
@@ -72,7 +73,7 @@ const Navigator = () => {
                 height:50
             }
         }}>
-            <Tab.Screen name="Home" component={HomeScreen}
+            <Tab.Screen name="Home" component={AppStackNavigator}
                 options={{
                     title: "Chats",
                     tabBarIcon: ({ focused, color, size }) => {
@@ -88,7 +89,7 @@ const Navigator = () => {
 
             <Tab.Screen name="Status" component={ChatNavigator} 
               options={{
-                title: 'Settings',
+                title: 'Calls',
                 tabBarIcon: ({ focused, color, size }) => {
                     return (
                         <IoniconsIcon
