@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import JwtDecode from 'jwt-decode';
 
 // store data on async storage
 const storeData = async(key,value)=>{
@@ -30,8 +31,15 @@ const removeData = async(key)=>{
     }
 }
 
+// decode jwt token
+const decodeToken = async(token)=>{
+    let result = JwtDecode(token);
+    return result;
+}
+
 export default {
     storeData,
     getData,
-    removeData
+    removeData,
+    decodeToken
 }
