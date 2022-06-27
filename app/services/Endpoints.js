@@ -5,6 +5,7 @@ const baseURL = BASE_URL.development
 class Endpoints {
     static login =  baseURL + '/api/auth/login'
     static users = baseURL + '/api/users'
+    static messages = baseURL + '/api/messages'
 }
 
 export default Endpoints;

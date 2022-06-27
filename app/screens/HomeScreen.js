@@ -105,10 +105,7 @@ const DATA_PINNEDCHATS = [
 const Screen = ({ navigation }) => {
     const store = useSelector(state => state.theme);
     const { theme } = store
-
-    console.log('theme here', theme)
-
-    console.log('conversations', Conversations)
+    
     // pinned chats container
     const PinnedChatsContainer = ({ contactName, image, lastMessage, isReplied }) => {
         let nameResult = contactName.split(' ');
@@ -215,6 +212,7 @@ const Screen = ({ navigation }) => {
                 <AppList
                     containerStyle={styles(theme).appListContainerStyle}
                     dataSource={Conversations}
+                    navigation={navigation}
                 />
 
 

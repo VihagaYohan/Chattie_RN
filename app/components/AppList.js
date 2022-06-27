@@ -1,26 +1,27 @@
 import React, { Component } from 'react'
-import {StyleSheet,View,FlatList} from 'react-native'
-import {useSelector} from 'react-redux'
+import { StyleSheet, View, FlatList } from 'react-native'
+import { useSelector } from 'react-redux'
 
 // utility
-import {constants,colors as appColors,} from '../utils'
+import { constants, colors as appColors, } from '../utils'
 
 // components
-import {ConversationItem} from './index'
+import { ConversationItem } from './index'
 
-const AppList = ({dataSource,containerStyle ,...otherProps})=>{
+const AppList = ({ dataSource, containerStyle, navigation, ...otherProps }) => {
     const store = useSelector(state => state.theme);
     const { theme } = store
 
-   console.log('props', otherProps)
+    console.log('props', otherProps)
 
-    return(
+    return (
         <FlatList
-        contentContainerStyle={containerStyle}
-        data={dataSource}
-        {...otherProps}
-        keyExtractor={({item,index}) => index}
-        renderItem={({item,index}) => <ConversationItem item={item}/>}/>
+            contentContainerStyle={containerStyle}
+            data={dataSource}
+            {...otherProps}
+            keyExtractor={({ item, index }) => index}
+            renderItem={({ item, index }) => <ConversationItem item={item}
+                navigation={navigation} />} />
     )
 }
 

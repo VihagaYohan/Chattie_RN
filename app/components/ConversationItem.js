@@ -9,16 +9,22 @@ import { constants, colors as appColors, appStyles, fonts } from '../utils'
 // components
 import { CustomText } from './index'
 
+// routes
+import routes from '../navigators/routes'
+
 const { RegularText, BoldText } = CustomText
 
-const ConversationItem = ({ item }) => {
+const ConversationItem = ({ item,navigation }) => {
     const store = useSelector(state => state.theme);
     const { theme } = store
 
-    console.log('item', item)
+    const handleNavigation = ()=>{
+        navigation.navigate(routes.Conversation)
+    }
 
     return (
-        <TouchableOpacity style={styles(theme).parentContainer}>
+        <TouchableOpacity style={styles(theme).parentContainer}
+        onPress={handleNavigation}>
             <View style={styles(theme).imageContainer}>
                 <Image source={{ uri: item.users[1].imageUri }}
                     style={styles(theme).image}
