@@ -6,6 +6,9 @@ import {ConversationScreen, SampleScreen,
 SearchUsersScreen,
 HomeScreen} from '../screens'
 
+// navigators
+import {BottomNavigator} from '../navigators'
+
 // utils
 import {utils,constants} from '../utils'
 
@@ -19,7 +22,7 @@ const Navigator = ()=>{
         <Stack.Navigator initialRouteName='Home' screenOptions={{
             headerShown:false
         }}>
-            <Stack.Screen name="Home" component={HomeScreen}/>
+            <Stack.Screen name="Home" component={BottomNavigator}/>
             <Stack.Screen name="SearchUser" component={SearchUsersScreen}/>
             <Stack.Screen name="Conversation" component={ConversationScreen}/>
         </Stack.Navigator>
