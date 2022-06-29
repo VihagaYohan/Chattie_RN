@@ -223,7 +223,7 @@ const Screen = ({ navigation }) => {
             {/* floating action button */}
             <TouchableOpacity
                 style={styles(theme).floatingButtonContainer}
-                onPress={() => navigation.navigate(routes.Conversation, {
+                onPress={() => navigation.navigate("ConversationScreen", {
                     name: "John"
                 })}>
                 <FontAwesomeIcon
