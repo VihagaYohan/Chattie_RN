@@ -13,10 +13,10 @@ import io from 'socket.io-client';
 import { useTheme } from '../hooks'
 
 // components
-import { AppWrapper,AppHeader ,CustomIcons } from '../components'
+import { AppWrapper, AppHeader, CustomIcons, ConversationBubble } from '../components'
 
 // utils
-import { utils, constants, colors } from '../utils'
+import { utils, constants, colors, mode, appStyles } from '../utils'
 
 // api services
 import { getUserInfo } from '../services/Users'
@@ -28,7 +28,7 @@ const { FontAwesomeIcon } = CustomIcons
 const ConversationScreen = ({ navigation }) => {
     const [theme, setTheme] = useTheme('light-mode');
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState(user);
+    const [user, setUser] = useState();
     const [messages, setMessages] = useState([]); // all messages in conversation
     const [message, setMessage] = useState(); // new message 
 
@@ -36,10 +36,9 @@ const ConversationScreen = ({ navigation }) => {
 
     useEffect(() => {
         getCurrentUser();
-        socketRef.current = io('http://192.168.1.7:5000');
+        socketRef.current = io('http://192.168.1.8:5000');
 
         socketRef.current.on('message', message => {
-            console.log(message);
             setMessages(message)
         })
     }, [])
@@ -48,7 +47,6 @@ const ConversationScreen = ({ navigation }) => {
     const fetchAllMessages = async (payload) => {
         try {
             let { data } = await getMessages(payload);
-            console.log('messages list');
             let result = data;
             setMessages(result.data)
         } catch (e) {
@@ -57,7 +55,6 @@ const ConversationScreen = ({ navigation }) => {
     }
 
     useEffect(() => {
-        console.log('new message')
     }, [messages])
 
     // get current user
@@ -65,9 +62,7 @@ const ConversationScreen = ({ navigation }) => {
         try {
             let token = await getData(constants.keys.ACCESS_TOKEN);
             let user = await decodeToken(token)
-            console.log(user)
             setUser(user)
-
             let payload = {
                 token: token,
                 id: "62a805c2947a4ec1649bb670"
@@ -90,97 +85,81 @@ const ConversationScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView
-            style={{
-                flex: 1,
-                backgroundColor: 'red',
-                justifyContent: 'space-between',
-                paddingHorizontal:constants.innerGap
-            }}>
+            style={styles(theme).parentContainer}>
 
-            <View style={{
-                width: '100%',
-                height: 50,
-                borderWidth: 1
-            }}>
-                <AppHeader
+            <AppHeader
                 isLeftIcon={true}
                 leftIconName="chevron-left"
                 title="Conversation"
                 rightIcon={true}
-                />
+            />
+
+            <View style={styles(theme).messageListContainer}>
+                {
+                    messages.length > 1 &&
+                    (
+                        <FlatList
+                            contentContainerStyle={{
+                                flex: 1,
+                            }}
+                            data={messages}
+                            keyExtractor={item => JSON.stringify(item)}
+                            renderItem={({ item, index }) => {
+                                return (
+                                    <ConversationBubble
+                                        key={index}
+                                        messageBody={item.message}
+                                        isUser={user.id == item.senderId ? true : false}
+                                        time={item.createdOn} />
+                                )
+                            }} />
+                    )
+                }
             </View>
 
-            <View style={{
-                flex: 1,
-                backgroundColor: 'green',
-                borderWidth: 1
-            }}></View>
+            <View style={styles(theme).messageInputFieldContainer}>
+                <TextInput
+                    style={styles(theme).messageFieldStyle}
+                    placeholder='Type your message here'
+                    placeholderTextColor={theme == 'light-mode' ? colors.lightGra3 : colors.primaryWhite}
+                    value={message}
+                    onChangeText={text => setMessage(text)} />
 
-
-            <View style={{
-                width: '100%',
-                height: 50,
-                borderWidth: 1,
-                alignSelf: "baseline"
-            }}></View>
+                <FontAwesomeIcon
+                    name="send"
+                    color={colors.primaryPurple}
+                    onPress={handleSendMessage}
+                />
+            </View>
 
         </SafeAreaView>
     )
-
-    /* return(
-        <AppWrapper innerContainerStyle={{
-            height:constants.screenHeight,
-            width:constants.screenWidth,
-            borderWidth:1,
-            height:"90%"
-            
-        }}>
-            <View style={{height:'100%',width:'100%'}}>
-            {
-                messages.length > 1 && 
-                (
-                    <FlatList
-                    contentContainerStyle={{
-                        flex:1,
-                        backgroundColor:'red'
-                    }}
-                    data={messages}
-                    keyExtractor={item=> JSON.stringify(item)}
-                    renderItem={({item,index}) =>{
-                        return(
-                            <Text key={index}>{item.message}</Text>
-                        )
-                    }}/>
-                )
-            }
-            </View>
-
-            <View style={{
-                flexDirection:'row',
-                alignItems:'center',
-                marginHorizontal:10,
-                borderWidth:1,
-            }}>
-                <TextInput
-                style={{
-                    flex:1
-                }}
-                placeholder='Type your message here'
-                value={message}
-                onChangeText={text => setMessage(text)}/>
-
-                <FontAwesomeIcon
-                name="send"
-                color={colors.primaryPurple}
-                onPress={handleSendMessage}
-                />
-            </View>
-        </AppWrapper>
-    ) */
 }
 
 const styles = theme => StyleSheet.create({
-
+    parentContainer:{
+        flex: 1,
+        justifyContent: 'space-between',
+        paddingHorizontal: constants.innerGap,
+        backgroundColor:theme === 'light-mode' ? mode.lightTheme.backgroundColor : mode.darkTheme.backgroundColor
+    },
+    messageListContainer:{
+        flex: 1,
+        backgroundColor:theme === 'light-mode' ? mode.lightTheme.backgroundColor : mode.darkTheme.backgroundColor
+    },
+    messageInputFieldContainer:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical:5,
+        borderRadius:constants.gap*2,
+        paddingHorizontal:constants.innerGap,
+        backgroundColor:theme === 'light-mode'? mode.lightTheme.backgroundColor : mode.darkTheme.backgroundColor,
+        ...appStyles.shadow
+    },
+    messageFieldStyle:{
+        flex:1,
+        color:theme === 'light-mode' ? colors.lightGra3: colors.primaryWhite
+    }
 })
 
 

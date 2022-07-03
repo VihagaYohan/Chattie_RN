@@ -11,3 +11,6 @@ export {default as AppHeader} from './AppHeader'
 
 // form components
 export {default as FormError} from './Form/FormError'
+
+// conversation
+export {default as ConversationBubble} from './ConversationBubble'
