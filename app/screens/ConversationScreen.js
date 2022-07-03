@@ -93,7 +93,8 @@ const ConversationScreen = ({ navigation }) => {
             style={{
                 flex: 1,
                 backgroundColor: 'red',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                paddingHorizontal:constants.innerGap
             }}>
 
             <View style={{
@@ -102,6 +103,8 @@ const ConversationScreen = ({ navigation }) => {
                 borderWidth: 1
             }}>
                 <AppHeader
+                isLeftIcon={true}
+                leftIconName="chevron-left"
                 title="Conversation"
                 rightIcon={true}
                 />
