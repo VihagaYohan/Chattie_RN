@@ -1,110 +1,127 @@
-import React, { Component,useState,useRef,useEffect } from 'react'
-import {StyleSheet,View,TouchableOpacity,FlatList,
-TextInput,Text,
-ActivityIndicator,
-Dimensions} from 'react-native'
+import React, { Component, useState, useRef, useEffect } from 'react'
+import {
+    StyleSheet, View, TouchableOpacity, FlatList,
+    TextInput, Text,
+    ActivityIndicator,
+    Dimensions,
+    ScrollView,
+    SafeAreaView
+} from 'react-native'
 import io from 'socket.io-client';
 
 // hooks
-import {useTheme} from '../hooks'
+import { useTheme } from '../hooks'
 
 // components
-import {AppWrapper,CustomIcons} from '../components'
+import { AppWrapper,AppHeader ,CustomIcons } from '../components'
 
 // utils
-import {utils,constants,colors} from '../utils'
+import { utils, constants, colors } from '../utils'
 
 // api services
-import {getUserInfo} from '../services/Users'
-import {getMessages} from '../services/Messages'
+import { getUserInfo } from '../services/Users'
+import { getMessages } from '../services/Messages'
 
-const {decodeToken,getData} = utils
-const {FontAwesomeIcon} = CustomIcons
+const { decodeToken, getData } = utils
+const { FontAwesomeIcon } = CustomIcons
 
-const ConversationScreen = ({navigation})=>{
+const ConversationScreen = ({ navigation }) => {
     const [theme, setTheme] = useTheme('light-mode');
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState(user);
-    const [messages,setMessages] = useState([]); // all messages in conversation
+    const [messages, setMessages] = useState([]); // all messages in conversation
     const [message, setMessage] = useState(); // new message 
 
     const socketRef = useRef(); // socket ref
 
-     useEffect(()=>{
+    useEffect(() => {
         getCurrentUser();
         socketRef.current = io('http://192.168.1.7:5000');
 
-        socketRef.current.on('message',message => {
+        socketRef.current.on('message', message => {
             console.log(message);
             setMessages(message)
         })
-     },[])
+    }, [])
 
-     // get messages for current conversation
-     const fetchAllMessages = async(payload)=>{
-        try{
-            let {data} = await getMessages(payload);
+    // get messages for current conversation
+    const fetchAllMessages = async (payload) => {
+        try {
+            let { data } = await getMessages(payload);
             console.log('messages list');
             let result = data;
             setMessages(result.data)
-        }catch(e){
+        } catch (e) {
             console.log(e)
         }
-     }
+    }
 
-     useEffect(()=>{
+    useEffect(() => {
         console.log('new message')
-     },[messages])
+    }, [messages])
 
     // get current user
-    const getCurrentUser = async()=>{
-        try{
+    const getCurrentUser = async () => {
+        try {
             let token = await getData(constants.keys.ACCESS_TOKEN);
             let user = await decodeToken(token)
             console.log(user)
             setUser(user)
 
             let payload = {
-                token:token,
-                id:"62a805c2947a4ec1649bb670"
+                token: token,
+                id: "62a805c2947a4ec1649bb670"
             }
 
             fetchAllMessages(payload);
-        }catch(e){
+        } catch (e) {
             console.log(e)
         }
     }
 
-    const handleSendMessage = async()=>{
+    const handleSendMessage = async () => {
         let messageObj = {
-            conversationId:"62a805c2947a4ec1649bb670",
-            message:message,
-            senderId:user.id
+            conversationId: "62a805c2947a4ec1649bb670",
+            message: message,
+            senderId: user.id
         }
-        socketRef.current.emit('message',messageObj) 
+        socketRef.current.emit('message', messageObj)
     }
 
-    return(
-        <AppWrapper style={{position:'relative'}}>
-           <View style={{
-            width:"100%",
-            height:(constants.screenHeight - 50)*1,
+    return (
+        <SafeAreaView
+            style={{
+                flex: 1,
+                backgroundColor: 'red',
+                justifyContent: 'space-between'
+            }}>
 
-            borderWidth:1,
-            backgroundColor:'red'
-           }}></View>
+            <View style={{
+                width: '100%',
+                height: 50,
+                borderWidth: 1
+            }}>
+                <AppHeader
+                title="Conversation"
+                rightIcon={true}
+                />
+            </View>
 
-<View style={{
-            width:"100%",
-            height:40,
-            //height:(constants.screenHeight - 50)*0.2,
-            borderWidth:1,
-            backgroundColor:'green',
-            position:"absolute",
-            left:0,
-            bottom:50
-           }}></View>
-        </AppWrapper>
+            <View style={{
+                flex: 1,
+                backgroundColor: 'green',
+                borderWidth: 1
+            }}></View>
+
+
+            <View style={{
+                width: '100%',
+                height: 50,
+                borderWidth: 1,
+                alignSelf: "baseline"
+            }}></View>
+
+        </SafeAreaView>
     )
 
     /* return(
