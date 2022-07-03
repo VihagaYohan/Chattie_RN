@@ -317,7 +317,7 @@ const styles = (colors) => StyleSheet.create({
     // floating action button
     floatingButtonContainer: {
         position: 'absolute',
-        bottom: 50,
+        bottom: 80,
         right: 10,
         width: 50,
         height: 50,

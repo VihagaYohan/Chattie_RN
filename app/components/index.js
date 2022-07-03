@@ -1,6 +1,6 @@
 export {default as AppWrapper} from './AppWrapper'
 export {default as CustomText} from './CustomText'
-export {default as AppHeader} from './AppHeader'
+export {default as AppHeader} from './AppTitle'
 export {default as CustomIcons} from './CustomIcons'
 export {default as AppList} from './AppList'
 export {default as ConversationItem} from './ConversationItem'

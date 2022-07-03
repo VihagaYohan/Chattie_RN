@@ -9,7 +9,7 @@ import { useTheme } from '../hooks/index'
 import { constants, mode } from '../utils'
 
 // components
-import { CustomText } from '../components'
+import { CustomText } from '.'
 
 const { BoldText,RegularText } = CustomText
 const { gap } = constants
