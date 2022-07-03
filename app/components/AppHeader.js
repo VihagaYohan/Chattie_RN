@@ -1,11 +1,12 @@
 import React, { Component,useState } from 'react'
 import {StyleSheet,View,TouchableOpacity,Image} from 'react-native'
+import {useNavigation} from '@react-navigation/native'
 
 // hooks
 import {useTheme} from '../hooks/'
 
 // utils
-import {constants,mode} from '../utils'
+import {colors, constants,mode} from '../utils'
 
 // components
 import {CustomText,CustomIcons} from '../components/'
@@ -18,6 +19,7 @@ title,
 isRightIcon,
 rightIconName})=>{
     const [theme, setTheme] = useState('light-mode');
+    const navigation = useNavigation();
 
     return(
         <View
@@ -25,10 +27,12 @@ rightIconName})=>{
             {
                 isLeftIcon && (
                     <FontAwesomeIcon
-                    name={leftIconName}/>
+                    name={leftIconName}
+                    color={colors.primaryWhite}
+                    onPress={()=>navigation.navigate('Home')}/>
                 )
             }
-            <BoldText>{title}</BoldText>
+            <BoldText style={styles(theme).titleStyle}>{title}</BoldText>
         </View>
     )
 }
@@ -38,6 +42,10 @@ const styles = theme => StyleSheet.create({
         flexDirection:'row',
         paddingVertical:constants.innerGap,
         alignItems:'center'
+    },
+    titleStyle:{
+        flex:1,
+        textAlign:'center'
     }
 })
 
