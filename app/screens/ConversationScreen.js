@@ -158,7 +158,7 @@ const styles = theme => StyleSheet.create({
     },
     messageFieldStyle:{
         flex:1,
-        color:theme === 'light-mode' ? colors.lightGra3: colors.primaryWhite
+        color:theme === 'light-mode' ? colors.primaryGray: colors.primaryWhite
     }
 })
 

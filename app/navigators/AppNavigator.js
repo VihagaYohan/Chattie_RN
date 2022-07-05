@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
-import {createStackNavigator} from '@react-navigation/stack'
+import { createStackNavigator } from '@react-navigation/stack'
 
 // screens
-import {HomeScreen,ConversationScreen,SearchUsersScreen} from '../screens'
+import { HomeScreen, ConversationScreen, SearchUsersScreen, } from '../screens'
 
 // navigators
-import {BottomNavigator} from '../navigators'
+import { BottomNavigator, AuthNavigator } from '../navigators'
 
-const Stack  = createStackNavigator();
+const Stack = createStackNavigator();
 
-const Navigator = ()=>{
-    return(
+const Navigator = () => {
+    return (
         <Stack.Navigator initialRouteName='Bottom'
-        screenOptions={{
-            headerShown:false
-        }}>
-            <Stack.Screen name="Bottom" component={BottomNavigator}/>
-            <Stack.Screen name="ConversationScreen" component={ConversationScreen}/>
+            screenOptions={{
+                headerShown: false
+            }}>
+            <Stack.Screen name="Auth" component={AuthNavigator} />
+            <Stack.Screen name="Bottom" component={BottomNavigator} />
+            <Stack.Screen name="ConversationScreen" component={ConversationScreen} />
         </Stack.Navigator>
     )
 }
