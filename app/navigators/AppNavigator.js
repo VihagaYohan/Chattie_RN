@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 const Navigator = () => {
     return (
-        <Stack.Navigator initialRouteName='Bottom'
+        <Stack.Navigator initialRouteName='Auth'
             screenOptions={{
                 headerShown: false
             }}>

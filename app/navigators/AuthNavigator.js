@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { createStackNavigator } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
 // screens
 import { LoginScreen, RegisterScreen } from '../screens/'
@@ -8,15 +8,15 @@ const Stack = createStackNavigator();
 
 const Navigator = () => {
     return (
-        <Stack.Navigator
+        <Stack.Navigator initialRouteName="RegisterScreen"
             screenOptions={{
-                headerShwon: false
+                headerShown: false
             }}>
             <Stack.Screen name="LoginScreen"
-                Component={LoginScreen} />
+                component={LoginScreen} />
 
             <Stack.Screen name="RegisterScreen"
-                Component={RegisterScreen} />
+                component={RegisterScreen} />
         </Stack.Navigator>
     )
 }
