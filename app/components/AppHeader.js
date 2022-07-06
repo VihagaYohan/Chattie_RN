@@ -33,6 +33,18 @@ rightIconName})=>{
                 )
             }
             <BoldText style={styles(theme).titleStyle}>{title}</BoldText>
+
+            {
+                isRightIcon == true ? (
+                    <FontAwesomeIcon
+                    name={leftIconName}
+                    color={colors.primaryWhite}
+                    onPress={()=>navigation.navigate('Home')}/>
+                ):(
+                    <View
+                    style={styles(theme).emptyIconContainer}></View>
+                )
+            }
         </View>
     )
 }
@@ -46,6 +58,10 @@ const styles = theme => StyleSheet.create({
     titleStyle:{
         flex:1,
         textAlign:'center'
+    },
+    emptyIconContainer:{
+        width:constants.iconSize,
+        height:constants.iconSize
     }
 })
 
