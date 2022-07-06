@@ -39,21 +39,27 @@ const Screen = ({ navigation }) => {
     const [theme, setTheme] = useTheme('light-mode');
 
     // handle user registeration
-    const handleRegister = async(email,password,phoneNumber)=>{
-        try{
-             
-        }catch(e){
+    const handleRegister = async (email, password, phoneNumber) => {
+        try {
+
+        } catch (e) {
             console.log(e)
         }
     }
 
     return (
         <AppWrapper parentContainerStyle={styles(theme).parentContainerStyle}>
+            <AppHeader
+                isLeftIcon={true}
+                leftIconName="chevron-left"
+                title="Chattie" />
+
             <KeyboardAvoidingView style={styles(theme).innerContainer}>
 
                 <Logo
                     width={100}
                     height={100} />
+
 
                 <Formik initialValues={{
                     email: "",
@@ -97,8 +103,8 @@ const Screen = ({ navigation }) => {
                                     keyboardType="default"
                                     placeholder='Enter password'
                                     secureTextEntry={true}
-                                    onChangeText={handleChange}
-                                    onBlur={handleBlur} />
+                                    onChangeText={handleChange('password')}
+                                    onBlur={handleBlur('password')} />
                             </View>
 
                             {errors.password && touched.password ? (
@@ -114,8 +120,8 @@ const Screen = ({ navigation }) => {
                                     style={styles(theme).textField}
                                     keyboardType="phone-pad"
                                     placeholder='Enter phone number'
-                                    onChangeText={handleChange}
-                                    onBlur={handleBlur} />
+                                    onChangeText={handleChange('phoneNumber')}
+                                    onBlur={handleBlur('phoneNumber')} />
                             </View>
 
                             {
@@ -141,7 +147,8 @@ const styles = theme => StyleSheet.create({
         backgroundColor: 'white',
         width: constants.screenWidth,
         height: constants.screenHeight,
-        padding: constants.innerGap
+        padding: constants.innerGap,
+
     },
 
     innerContainer: {
