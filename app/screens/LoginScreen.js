@@ -26,7 +26,7 @@ import routes from '../navigators/routes';
 import Logo from '../../assets/images/logo.svg'
 
 const { FontAwesomeIcon } = CustomIcons
-const { BoldText } = CustomText
+const { BoldText,RegularText } = CustomText
 const { storeData } = utils
 
 // login form validation
@@ -127,6 +127,9 @@ const Screen = ({ navigation }) => {
 
 
                 </Formik>
+
+                <BoldText style={{fontSize:fonts.small}}
+                onPress={()=>navigation.navigate('RegisterScreen')}>Sign Up</BoldText>
 
             </KeyboardAvoidingView>
         </AppWrapper>
