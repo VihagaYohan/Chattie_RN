@@ -10,6 +10,11 @@ export const userLogin = async(payload)=>{
     return result;
 }
 
+export const userRegister = async(payload)=>{
+    const result = await axiosClient.post(Endpoints.register)
+    return result;
+}
+
 export const userLogout = async(payload)=>{
     const result = await removeData(keys.ACCESS_TOKEN)
     return result;
