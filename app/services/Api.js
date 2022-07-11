@@ -1,4 +1,5 @@
-import axios from 'axios';
+//import axios from 'axios';
+const axios = require('axios')
 import {BASE_URL} from './Environment'
 
 // utils
